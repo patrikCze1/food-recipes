@@ -30,6 +30,7 @@ const RecipesType = new GraphQLObjectType({
     id: { type: GraphQLInt },
     image: { type: GraphQLString },
     readyInMinutes: { type: GraphQLInt },
+    servings: { type: GraphQLInt },
     title: { type: GraphQLString },
     offset: { type: GraphQLInt },
   }),
@@ -88,10 +89,14 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     search: {
       type: SearchType,
+      args: {
+        offset: { type: GraphQLInt },
+        query: { type: GraphQLString },
+      },
       resolve(parent, args) {
         return axios
           .get(
-            `https://api.spoonacular.com/recipes/search?apiKey=${key.api}`
+            `https://api.spoonacular.com/recipes/search?offset=${args.offset}&query=${args.query}&apiKey=${key.api}`
           )
           .then((res) => res.data);
       },
@@ -111,13 +116,10 @@ const RootQuery = new GraphQLObjectType({
     },
     random_recipes: {
       type: RecipeDetailType,
-      args: {
-        tags: { type: GraphQLList(GraphQLString) },
-      },
       resolve(parent, args) {
         return axios
           .get(
-            `https://api.spoonacular.com/recipes/random?number=10&tags=${args.tags}&apiKey=${key.api}`
+            `https://api.spoonacular.com/recipes/random?apiKey=${key.api}`
           )
           .then((res) => res.data);
       },

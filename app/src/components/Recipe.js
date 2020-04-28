@@ -30,13 +30,11 @@ const RECIPE = gql`
   }
 `;
 
-const Recipe = () => {
-  //id
-  const id = 132;
+const Recipe = ({id}) => {
   const { loading, error, data } = useQuery(RECIPE, {
-    variables: { id }, //redux
+    variables: { id }, 
   });
-  console.log(data);
+
   if (loading) return <Loading />;
   if (error) return <p>Error :(</p>;
 
@@ -53,7 +51,7 @@ const Recipe = () => {
 
   return (
     <div>
-      <h1>{title}</h1>
+      <h1 style={{marginTop: 10}}>{title}</h1>      
 
       <div className="row">
         <div className="col s6">
@@ -81,9 +79,9 @@ const Recipe = () => {
                 </td>
                 <td>
                   {vegeatrian ? (
-                    <i class="tiny material-icons">done</i>
+                    <i className="tiny material-icons">done</i>
                   ) : (
-                    <i class="tiny material-icons">clear</i>
+                    <i className="tiny material-icons">clear</i>
                   )}
                 </td>
               </tr>
@@ -93,9 +91,9 @@ const Recipe = () => {
                 </td>
                 <td>
                   {vegan ? (
-                    <i class="tiny material-icons">done</i>
+                    <i className="tiny material-icons">done</i>
                   ) : (
-                    <i class="tiny material-icons">clear</i>
+                    <i className="tiny material-icons">clear</i>
                   )}
                 </td>
               </tr>

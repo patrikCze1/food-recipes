@@ -1,0 +1,23 @@
+.my-container {
+    width: 90%;
+    margin: auto;
+}
+
+.recipes-hidden {
+    float: left;
+    opacity: 0.35;
+}
+
+.recipe-modal {
+    z-index: 999;
+    float: right;
+    width: 80%;
+    position: absolute;
+    left: 20%;
+}
+.recipe-detail {
+    background-color: white;
+    float: left;
+    padding: 20px;
+    width: 100%;
+}
